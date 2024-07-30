@@ -108,6 +108,9 @@
 			.dropdown:hover .dropdown-content {
 			  display: block;
 			}
+			.dropdown:active .dropdown-content {
+			  display: block;
+			}
 			/*Some dropdown and navbar stuff is from w3schools*/
 		</style>
 		
@@ -146,6 +149,7 @@
 			<input class="smaller" id="gameSize" type="range" value="5" min="5" max="15" step="1">
 			<button class="smaller" id="generateButton">Generate Game</button>
 			<div id="peopleArea"></div>
+			<p id="bluffs"></p>
 		</main>
 		
 		<script type>
@@ -167,9 +171,9 @@
 					this.addAttr.appendTo(this.main)
 					
 					this.attrs = []
-					this.addAttribute("Name")
-					this.addAttribute("Character")
-					this.addAttribute("Alignment")
+					this.addAttribute("Name",true)
+					this.addAttribute("Character",true)
+					this.addAttribute("Alignment",true)
 				}
 				
 				remove() {
@@ -183,7 +187,7 @@
 					this.attrs[index].cont.remove()
 					this.attrs.splice(index,1)
 				}
-				addAttribute(value) {
+				addAttribute(value,removeRem) {
 					var cont = $("<div>")
 					var text = $("<input>")
 					var rem = $("<button>")
@@ -193,26 +197,32 @@
 					text.css("height","20px")
 					text.css("flexGrow","1")
 					text.val(value)
-					rem.css("height","20px")
-					rem.html("<i class='material-icons' style='font-size:10px;'>close</i>")
-					var owner = this
-					rem.on("click",()=>{
-						var index;
-						owner.attrs.forEach((e,i) => {
-							if(e.cont===cont) {
-								index = i
-							}
-						})
-						owner.removeAttribute(index)
-					})
 					
-					text.appendTo(cont)
-					rem.appendTo(cont)
+					if(removeRem) {
+						rem.remove()
+						text.appendTo(cont)
+					} else {
+						rem.css("height","20px")
+						rem.html("<i class='material-icons' style='font-size:10px;'>close</i>")
+						var owner = this
+						rem.on("click",()=>{
+							var index;
+							owner.attrs.forEach((e,i) => {
+								if(e.cont===cont) {
+									index = i
+								}
+							})
+							owner.removeAttribute(index)
+						})
+						text.appendTo(cont)
+						rem.appendTo(cont)
+					}
+					
 					cont.appendTo(this.main)
 					this.attrs.push({
 						text:text,
 						cont:cont,
-						rem:rem,
+						rem:rem||null,
 					})
 				}
 				readyForNewGame() {
@@ -235,6 +245,7 @@
 			
 			var grimRoles = []
 			var grimAlign = []
+			var demonBluffs = []
 			
 			function generateGrimore() {
 				var compTo = [3,3,5,5,5,7,7,7,9,9,9];
@@ -243,6 +254,7 @@
 				
 				grimRoles = []
 				grimAlign = []
+				demonBluffs = []
 				
 				var numTo = compTo[$("#gameSize").val()-5]
 				var numOu = compOu[$("#gameSize").val()-5]
@@ -302,7 +314,26 @@
 					grimRoles.push(avOu[toDelete]);
 					grimAlign.push("good");
 					
-					avOu.splice(toDelete,1);
+					if(avOu[toDelete]==="drunk") {
+						avOu.splice(toDelete,1);
+						toDelete = Math.floor(Math.random()*avTo.length);
+						grimRoles[grimRoles.length-1]+=" ("+avTo[toDelete]+")"
+						avTo.splice(toDelete,1)
+					} else {
+						avOu.splice(toDelete,1);
+					}
+				}
+				
+				for(var bluffs = 0; bluffs < 3; bluffs++) {
+					if(avTo.length > 0) {
+						toDelete = Math.floor(Math.random()*avTo.length);
+						demonBluffs.push(avTo[toDelete])
+						avTo.splice(toDelete,1);
+					} else if(avOu.length > 0) {
+						toDelete = Math.floor(Math.random()*avOu.length);
+						demonBluffs.push(avOu[toDelete])
+						avOu.splice(toDelete,1);
+					}
 				}
 				
 				function shuffleArrays(array1,array2) {
@@ -322,6 +353,7 @@
 					people[p].attrs[1].text.val(grimRoles[p])
 					people[p].attrs[2].text.val(grimAlign[p])
 				}
+				$("#bluffs").text("Demon bluffs: "+demonBluffs.join(", "))
 			}
 			
 			$("#JSONFile").on("change",()=>{
