@@ -1,0 +1,58 @@
+* {
+    font-family: "Roboto";
+}
+
+html {
+    --off-white:rgb(240,240,240);
+    margin-left:5vw;
+    margin-right:5vw;
+    background-color:var(--off-white);
+}
+
+.center {
+    text-align:center;
+}
+
+.header {
+    font-size:45px;
+}
+
+.body {
+    font-size:20px;
+}
+
+.content {
+    margin-left:5vw;
+    margin-right:5vw;
+    align-content:center;
+    display:flex;
+    flex-direction:column;
+}
+
+.smaller {
+    width:30vw;
+    align-self:center;
+}
+
+input[type="file"] {
+    border:1px solid black;
+}
+
+#peopleArea {
+    width:100%;
+    display:flex;
+    flex-direction:column;
+}
+
+.home-link {
+    display: block;
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.home-link:hover {
+    text-decoration: underline;
+} 

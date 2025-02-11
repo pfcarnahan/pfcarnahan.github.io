@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="styles.css">
+        
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script src="script.js"></script>
+    </head>
+    <body>
+        <a href="../../" class="home-link">← Back to Home</a>
+        <main class="content center">
+            <h1 class="header center">Blood on the Clocktower Tool</h1>
+            <p class="body center">Originally made in Java</p>
+            <p class="body">Does not support travellers, fabled, or experimental characters as of yet.</p>
+            <div class="body center"><em>Please note that I am not affiliated with The Pandemonium Institute in any way. This is my own creation to help me. You can find Blook on the Clocktower at <a href="https://bloodontheclocktower.com/">bloodontheclocktower.com</a>.</em></div>
+            <br><br>
+            <input id="JSONFile" class="smaller" type="file" accept=".json">
+            <input id="JSONIn" type="text" value="JSON here">
+            <br>
+            <button id="loadJSON" class="smaller">Load JSON Script</button>
+            <br>
+            <span id="scriptInfo" class="body">Script Info</span>
+            <h4>Select Size: <span id="sizeNum">5</span></h4>
+            <input class="smaller" id="gameSize" type="range" value="5" min="5" max="15" step="1">
+            <button class="smaller" id="generateButton">Generate Game</button>
+            <div id="peopleArea"></div>
+            <p id="bluffs"></p>
+        </main>
+    </body>
+</html> 
