@@ -3,6 +3,7 @@ body {
     padding: 0;
     overflow: hidden;
     background: #000;
+    font-family: "Roboto", sans-serif;
 }
 
 .home-link {
@@ -55,6 +56,6 @@ body {
 }
 
 #loadText {
-    font-family: sans-serif;
+    font-family: "Roboto", sans-serif;
     color: #fff;
 } 

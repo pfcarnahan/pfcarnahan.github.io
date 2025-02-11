@@ -110,11 +110,11 @@ const winScene = ctx => {
     ctx.fillStyle = "black"
     ctx.strokeStyle = "white"
     ctx.lineWidth = 2
-    ctx.font = "50px arial"
+    ctx.font = "50px Roboto"
     ctx.textAlign = "center"
     ctx.strokeText(`YOU WIN!`, window.innerWidth/2, 200)
     ctx.fillText(`YOU WIN!`, window.innerWidth/2, 200)
-    ctx.font = "20px arial"
+    ctx.font = "20px Roboto"
     ctx.strokeText(`Mention the keyword, "${keyword}", in the T&T to let us know!`, window.innerWidth/2, 250)
     ctx.strokeText(`(And find a way to be sneaky about it!)`, window.innerWidth/2, 275)
     ctx.fillText(`Mention the keyword, "${keyword}", in the T&T to let us know!`, window.innerWidth/2, 250)
@@ -165,7 +165,7 @@ function draw() {
                     foregroundCtx.fillStyle = "black"
                     foregroundCtx.strokeStyle = "white"
                     foregroundCtx.lineWidth = 2
-                    foregroundCtx.font = "20px arial"
+                    foregroundCtx.font = "20px Roboto"
                     foregroundCtx.textAlign = "center"
                     foregroundCtx.strokeText(`Level ${level + 1}: ${levels[level].name}`, window.innerWidth/2, 50)
                     foregroundCtx.fillText(`Level ${level + 1}: ${levels[level].name}`, window.innerWidth/2, 50)
